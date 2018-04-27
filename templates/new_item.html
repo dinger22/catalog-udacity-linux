@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+        {% if isLogedIn %}
+        <a class="logout" href="{{ url_for('gdisconnect') }}">Logout</a>
+        {% endif %}
+        {% if not isLogedIn %}
+        <a class="logout" href="{{ url_for('showLogin') }}">Login</a>
+        {% endif %}
+        <div class="container">
+            <form class="add-form"  method = "post">
+                <input hidden type ="text" name="category" value="{{category_id}}">
+                <label for="name">Name:</label>
+                <input type ="text" name="name" placeholder="Name">
+                <label for="description">Description:</label>
+                <input type ="text" name="description" placeholder="Description"></input>
+                <button type="submit">Create</button>
+                <a class="cancel" href = "{{ url_for('showCatalog') }}"> Cancel </a>    
+            </form>
+        </div>
+	</body>
+</html>	  
+

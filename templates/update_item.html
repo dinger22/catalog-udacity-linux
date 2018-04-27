@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+        {% if isLogedIn %}
+        <a class="logout" href="{{ url_for('gdisconnect') }}">Logout</a>
+        {% endif %}
+        {% if not isLogedIn %}
+        <a class="logout" href="{{ url_for('showLogin') }}">Login</a>
+        {% endif %}
+        <div class="container">
+            <form class="add-form"  method = "post">
+                    <input hidden type ="text" name="category" value="{{category.category_id}}">
+                    <h2 >{{category.category_name}}</h2>
+                    <br>
+                    <br>
+                    <label for="name">Name:</label>
+                    <input type ="text" name="name" value="{{item.catalog_item_name}}">
+                    <label for="description">Description:</label>
+                    <input type ="text" name="description" value="{{item.catalog_item_description}}"></input>
+                    {% if isLogedIn %}
+                    <button type="submit">Update</button>
+                    <div class="delete-and-cancle">
+                        <a class="delete" href="{{ url_for('deleteItem', category_id=category.category_id, catalog_item_id=item.catalog_item_id) }}"> Delete </a>     
+                        <a class="cancel" href = "{{ url_for('showCatalog') }}"> Cancel </a>    
+                    </div>
+                    {% endif %}
+            </form>
+        </div>
+
+	</body>
+</html>	  
+
